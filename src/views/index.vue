@@ -10,20 +10,16 @@
                 <img :src="require(`../assets/cards-img/${item}.png`)"/>
             </div>
         </div>
-        <!-- <div class="right">
-            <div>
-                <ul v-for="(item, index) in listDataRight" :key="index">
-                    <li><img :src="require(`../assets/cards-img/${item}.png`)"/></li>
-                </ul>
+        <div class="right">
+            <div v-for="(item, index) in listDataRight" :key="index" >
+                <img :src="require(`../assets/cards-img/${item}.png`)"/>
             </div>
-        </div> -->
-        <!-- <div class="bottom">
-            <div>
-                <ul v-for="(item, index) in listDataBottom" :key="index">
-                    <li><img :src="require(`../assets/cards-img/${item}.png`)"/></li>
-                </ul>
+        </div>
+        <div class="bottom">
+            <div v-for="(item, index) in listDataBottom" :key="index" @click="btn(item)">
+                <img :src="require(`../assets/cards-img/${item}.png`)"/>
             </div>
-        </div> -->
+        </div>
         
         <button class="btn" @click="handleButton()">开始</button>
     </div>
@@ -49,6 +45,7 @@ export default {
         }
     },
     methods: {
+        //数据初始化 
         handleButton(){
             //为数组添加52个
             let arry = new Array(52).fill(0)
@@ -79,12 +76,9 @@ export default {
                     return a - b
                 }
             )
-
-            
-            console.log(this.listDataTop)
-            console.log(this. listDataLeft)
-            console.log(this. listDataRight)
-            console.log(this. listDataBottom)
+        },
+        btn(item){
+            console.log(item)
         }
     }
 }
@@ -107,7 +101,6 @@ html,body {
     display: flex;
     margin: auto;
     width: 76%;
-    border: 1px solid red;
     div{
         width: 7.69%;
         img{
@@ -127,13 +120,34 @@ html,body {
     margin: auto;
     width: 9%;
     height: 70%;
-    border: 1px solid red;
     div{
         position: relative;
         width: 100%;
         height: 10px;
         text-align: center;
-        border: 1px solid red;
+        img{
+            margin-top:-20px;
+            width: 70%;
+            transform: rotate(-270deg);
+        }
+    }
+}
+.right{
+    position: absolute;
+    display: flex;
+    flex-direction:column;
+    justify-content:space-between;
+    top: 50%;
+    right: 2%;
+    transform: translate(0, -50%);
+    margin: auto;
+    width: 9%;
+    height: 70%;
+    div{
+        position: relative;
+        width: 100%;
+        height: 10px;
+        text-align: center;
         img{
             margin-top:-20px;
             width: 70%;
@@ -146,18 +160,14 @@ html,body {
     position: absolute;
     bottom: 0;
     left: 50%;
-    transform: translate(-50%, 0);
+    transform: translateX(-50%);
     display: flex;
     margin: auto;
     width: 76%;
-    border: 1px solid red;
     div{
-        
         width: 7.69%;
         img{
-            
             width: 100%;
-            
         }
     }
 }
